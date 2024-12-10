@@ -1,0 +1,22 @@
+﻿@model List<BlogCRUD.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+}
+<main id="all-posts">
+    <h1>All Posts</h1>
+    @foreach(var post in Model){
+
+    <article class="post-item">
+        <h2>@post.Title</h2>
+        <p class="post-item-author">By @post.Authour?.Name</p>
+        <p>@post.summary</p>
+        <div class="post-actions">
+            <form asp-action="DeletePost" asp-controller="Posts" asp-route-id="@post.Id" method="post" >
+                <button type="submit" class="btn btn-alt">Delete Post</button>
+            </form>
+            <a asp-controller="Posts" asp-route-id="@post.Id" asp-action="UpdatePost" >Edit Post</a>
+            <a class="btn" asp-action="PostById" asp-controller="Posts" asp-route-id="@post.Id" >View Post</a>
+        </div>
+    </article>
+    }
+</main>
